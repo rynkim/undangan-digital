@@ -4,24 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Undangan Digital - Cherry Blossom & Hanok</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Konfigurasi Tailwind untuk warna dan font kustom -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'soft-pink': '#FBEFF2', 
+                        'soft-pink': '#FBEFF2',
                         'rose-gold': '#B76E79', // Aksen untuk teks judul dan border
-                        'dark-text': '#333333', 
+                        'dark-text': '#333333',
                         'blush': '#FFE6EE', // Untuk kotak elemen
-                        'deep-sakura': '#FF99AA', 
-                        'petal-pink': '#FFD1DC', 
+                        'deep-sakura': '#FF99AA',
+                        'petal-pink': '#FFD1DC',
                     },
                     fontFamily: {
                         'sans': ['Inter', 'sans-serif'],
-                        'script': ['Playfair Display', 'serif'], 
+                        'script': ['Playfair Display', 'serif'],
                     },
                 }
             }
@@ -30,7 +28,9 @@
     <style>
         /* Menggunakan Playfair Display dari Google Fonts untuk Judul */
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
-        
+        /* Menggunakan Material Icons untuk kontrol musik dan WhatsApp */
+        @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
         .script-font {
             font-family: 'Playfair Display', serif;
             font-weight: 700;
@@ -49,11 +49,11 @@
             overflow: hidden;
             text-align: center;
         }
-        
+
         /* Gaya untuk elemen Hanok (SVG Placeholder) - Tetap subtle */
         .hanok-outline {
             stroke: #B76E79;
-            opacity: 0.08; 
+            opacity: 0.08;
             width: 100%;
             max-width: 500px;
             height: auto;
@@ -62,7 +62,7 @@
         /* Animasi kelopak sakura */
         .sakura-petal {
             position: absolute;
-            color: #FFD1DC; 
+            color: #FFD1DC;
             z-index: 10;
             user-select: none;
             pointer-events: none;
@@ -82,12 +82,12 @@
         /* Gaya untuk bingkai foto bunga di Slide 1 */
         .floral-photo-frame {
             position: relative;
-            width: 220px; 
+            width: 220px;
             height: 270px;
-            border-radius: 15px; 
-            overflow: hidden; 
+            border-radius: 15px;
+            overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            background-color: white; 
+            background-color: white;
             z-index: 30;
             margin: 0 auto;
         }
@@ -96,22 +96,22 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 15px; 
+            border-radius: 15px;
         }
 
         .floral-photo-frame::before,
         .floral-photo-frame::after {
-            content: '🌸'; 
+            content: '🌸';
             position: absolute;
-            font-size: 60px; 
-            color: #FFD1DC; 
-            z-index: 35; 
+            font-size: 60px;
+            color: #FFD1DC;
+            z-index: 35;
             opacity: 0.9;
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); 
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
         }
         .floral-photo-frame::before { top: -15px; left: -20px; transform: rotate(-20deg); }
         .floral-photo-frame::after { bottom: -15px; right: -20px; transform: rotate(160deg); }
-        
+
         /* Dekorasi Sudut Sakura untuk Cover */
         .corner-branch {
             position: absolute;
@@ -120,8 +120,8 @@
             user-select: none;
             pointer-events: none;
         }
-        .corner-branch.top-left { 
-            top: -50px; left: -50px; 
+        .corner-branch.top-left {
+            top: -50px; left: -50px;
             width: 250px; height: 250px;
             /* SVG Placeholder */
             background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23FFD1DC" d="M50 0 C75 0 100 25 100 50 C100 75 75 100 50 100 C25 100 0 75 0 50 C0 25 25 0 50 0 Z"/><text x="50" y="55" font-size="60" text-anchor="middle" fill="%23FF99AA">🌸</text></svg>');
@@ -129,8 +129,8 @@
             background-repeat: no-repeat;
             transform: rotate(20deg);
         }
-        .corner-branch.bottom-right { 
-            bottom: -50px; right: -50px; 
+        .corner-branch.bottom-right {
+            bottom: -50px; right: -50px;
             width: 250px; height: 250px;
             background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23FFD1DC" d="M50 0 C75 0 100 25 100 50 C100 75 75 100 50 100 C25 100 0 75 0 50 C0 25 25 0 50 0 Z"/><text x="50" y="55" font-size="60" text-anchor="middle" fill="%23FF99AA">🌸</text></svg>');
             background-size: contain;
@@ -138,57 +138,57 @@
             transform: rotate(200deg);
         }
         
+        /* Tambahan: Music Control Button Floating */
+        #music-control-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+            cursor: pointer;
+            width: 48px;
+            height: 48px;
+            border: none;
+            outline: none;
+        }
     </style>
 </head>
 <body class="font-sans text-dark-text bg-white">
 
-    <!-- DEKORASI BACKGROUND -->
     <div class="corner-branch top-left"></div>
     <div class="corner-branch bottom-right"></div>
 
-    <!-- PETAL SAKURA BERJATUHAN -->
     <div class="sakura-petal petal-1">❀</div>
     <div class="sakura-petal petal-2">❀</div>
     <div class="sakura-petal petal-3">❀</div>
     <div class="sakura-petal petal-4">❀</div>
     <div class="sakura-petal petal-5">❀</div>
 
-    <!-- Slide 1: Pembuka + Personalized Guest Name -->
     <section id="slide1">
-        <!-- SVG Hanok Outline sebagai latar belakang samar -->
         <svg class="hanok-outline absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" viewBox="0 0 100 50" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M10 40 L50 10 L90 40 M20 40 L20 45 M80 40 L80 45 M30 40 L30 45 M70 40 L70 45 M50 10 L50 45 M10 40 L90 40" stroke="#B76E79" stroke-width="2"/>
             <path d="M45 15 C48 12, 52 12, 55 15" stroke="#B76E79" stroke-width="2" />
         </svg>
 
         <div class="relative z-30 p-6 md:p-10 max-w-sm mx-auto">
-            
-            <!-- PERSONALISASI NAMA TAMU (Otomatis dari URL: ?to=Nama%20Tamu) -->
+
             <p id="guest-name-display" class="text-dark-text text-sm mb-6"></p>
 
-            <!-- Foto Mempelai dengan Bingkai Bunga -->
             <div class="mb-8 floral-photo-frame">
-                <!-- GANTI URL FOTO ANDA DI SINI -->
                 <img src="Coverawal.jpg" alt="Foto Mempelai" onerror="this.onerror=null; this.src='Coverawal.jpg';">
             </div>
 
             <p class="text-xl text-dark-text mb-1 tracking-widest font-script italic">Kami Menikah</p>
             <h1 class="script-font text-5xl md:text-6xl text-rose-gold mb-2 leading-tight">
-                <!-- EDIT NAMA MEMPELAI PRIA DAN WANITA DI SINI -->
                 Ato & Ririn
             </h1>
-            <!-- EDIT TANGGAL TAMPILAN DI SINI -->
             <p id="date-display" class="text-dark-text text-lg mb-8">Minggu, 14 Desember 2025</p>
 
-            <!-- Tombol Buka Undangan -->
             <button id="open-invitation-btn" class="bg-rose-gold text-white px-8 py-3 rounded-full shadow-lg hover:bg-rose-gold/90 transition duration-300 transform hover:scale-105">
                 Buka Undangan
             </button>
         </div>
 
-        <!-- Konten Undangan (Tersembunyi hingga tombol diklik) -->
         <div id="main-content" class="hidden w-full px-4 md:px-8 pt-10 pb-20">
-            <!-- Countdown Timer Area -->
             <div class="text-center mb-12">
                 <h2 class="text-xl font-script text-rose-gold mb-4">Menghitung Hari Bahagia</h2>
                 <div id="countdown-timer" class="flex justify-center space-x-4">
@@ -211,7 +211,6 @@
                 </div>
             </div>
 
-            <!-- Slide 2: Kata-kata Agamis -->
             <section id="slide2" class="py-16 text-center max-w-xl mx-auto">
                 <div class="border-t border-b border-rose-gold/50 py-10">
                     <p class="text-dark-text text-lg italic mb-6">
@@ -221,20 +220,15 @@
                 </div>
             </section>
 
-            <!-- Slide 3: Nama Mempelai dan Info Acara -->
             <section id="slide3" class="py-16 text-center max-w-4xl mx-auto">
                 <h2 class="script-font text-3xl text-rose-gold mb-10">Kami yang Berbahagia</h2>
-                
-                <!-- Foto Pasangan -->
+
                 <div class="flex justify-center mb-10">
-                    <!-- Placeholder image (Small) -->
-                    <img src="3.jpg" alt="Foto Mempelai" class="rounded-xl shadow-lg w-48 h-64 gallery-item transition-all duration-500" onerror="this.onerror=null; this.src='3.jpg';">
+                    <img src="3.jpg" alt="Foto Mempelai" class="rounded-xl shadow-lg w-48 h-64 gallery-item transition-all duration-500 hover:scale-105" onerror="this.onerror=null; this.src='3.jpg';">
                 </div>
 
                 <div class="grid md:grid-cols-2 gap-8 text-dark-text mb-12">
-                    <!-- Mempelai Pria -->
                     <div class="p-6 bg-blush rounded-xl shadow-md border-t-4 border-rose-gold">
-                        <!-- EDIT INFO KELUARGA DI SINI -->
                         <h3 class="script-font text-3xl text-rose-gold mb-2">Tato Wijaya</h3>
                         <p class="text-sm mb-4">Putra dari Bpk. Jaya & Ibu Eli</p>
                         <div class="border-t border-rose-gold/50 pt-4">
@@ -242,10 +236,8 @@
                         </div>
                     </div>
 
-                    <!-- Mempelai Wanita -->
                     <div class="p-6 bg-blush rounded-xl shadow-md border-t-4 border-rose-gold">
-                         <!-- EDIT INFO KELUARGA DI SINI -->
-                        <h3 class="script-font text-3xl text-rose-gold mb-2">Ririn</h3>
+                           <h3 class="script-font text-3xl text-rose-gold mb-2">Ririn</h3>
                         <p class="text-sm mb-4">Putri dari Bpk. Kadoni & Ibu Juneri</p>
                         <div class="border-t border-rose-gold/50 pt-4">
                             <p class="font-bold">Fb: @Riryn kim</p>
@@ -253,12 +245,9 @@
                     </div>
                 </div>
 
-                <!-- Info Akad & Resepsi -->
                 <div class="grid md:grid-cols-2 gap-6 mt-12">
-                    <!-- Akad Nikah -->
                     <div class="p-6 bg-white border border-rose-gold/50 rounded-xl shadow-lg">
                         <h3 class="script-font text-2xl text-rose-gold mb-3">Akad Nikah</h3>
-                        <!-- EDIT WAKTU DAN LOKASI ACARA DI SINI -->
                         <p class="text-lg font-bold">Minggu, 14 Desember 2025</p>
                         <p class="mb-3">Pukul: 09:00 WIB s/d Selesai </p>
                         <p class="mt-4">Bertempat di:</p>
@@ -266,10 +255,8 @@
                         <p class="text-sm">Desa slangit blok 2 Rt 08 Rw 03 Kec.Klangenan Kab.Cirebon</p>
                     </div>
 
-                    <!-- Resepsi -->
                     <div class="p-6 bg-white border border-rose-gold/50 rounded-xl shadow-lg">
                         <h3 class="script-font text-2xl text-rose-gold mb-3">Resepsi</h3>
-                        <!-- EDIT WAKTU DAN LOKASI ACARA DI SINI -->
                         <p class="text-lg font-bold">Minggu, 14 Desember 2025</p>
                         <p class="mb-3">Pukul: 10:00 WIB s/d Selesai</p>
                         <p class="mt-4">Bertempat di:</p>
@@ -279,173 +266,106 @@
                 </div>
             </section>
 
-            <!-- Slide 4: Galeri Foto -->
             <section id="slide4" class="py-16 max-w-4xl mx-auto">
                 <h2 class="script-font text-3xl text-rose-gold text-center mb-10">Galeri Kenangan Kami</h2>
-                
+
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 p-4 bg-blush rounded-xl shadow-xl">
-                    <!-- GANTI URL FOTO DI SINI. Ganti placehold.co dengan link foto Anda -->
-                    <img src="1.jpg" alt="Galeri 1" class="gallery-item rounded-lg shadow-md hover:shadow-xl" onerror="this.onerror=null; this.src='1.jpg';">
-                    <img src="2.jpg" alt="Galeri 2" class="gallery-item rounded-lg shadow-md hover:shadow-xl" onerror="this.onerror=null; this.src='2.jpg';">
-                    <img src="4.jpg" alt="Galeri 3" class="gallery-item rounded-lg shadow-md hover:shadow-xl" onerror="this.onerror=null; this.src='4.jpg';">
-                    <img src="5.jpg" alt="Galeri 4" class="gallery-item rounded-lg shadow-md hover:shadow-xl" onerror="this.onerror=null; this.src='5.jpg';">
-                    <img src="6.jpg" alt="Galeri 5" class="gallery-item rounded-lg shadow-md hover:shadow-xl" onerror="this.onerror=null; this.src='6.jpg';">
-                    <img src="3.jpg" alt="Galeri 6" class="gallery-item rounded-lg shadow-md hover:shadow-xl" onerror="this.onerror=null; this.src='3.jpg';">
-                    <img src="7.jpg" alt="Galeri 7" class="gallery-item rounded-lg shadow-md hover:shadow-xl" onerror="this.onerror=null; this.src='7.jpg';">
-                    <img src="8.jpg" alt="Galeri 8" class="gallery-item rounded-lg shadow-md hover:shadow-xl" onerror="this.onerror=null; this.src='8.jpg';">
+                    <img src="1.jpg" alt="Galeri 1" class="gallery-item rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105" onerror="this.onerror=null; this.src='1.jpg';">
+                    <img src="2.jpg" alt="Galeri 2" class="gallery-item rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105" onerror="this.onerror=null; this.src='2.jpg';">
+                    <img src="4.jpg" alt="Galeri 3" class="gallery-item rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105" onerror="this.onerror=null; this.src='4.jpg';">
+                    <img src="5.jpg" alt="Galeri 4" class="gallery-item rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105" onerror="this.onerror=null; this.src='5.jpg';">
+                    <img src="6.jpg" alt="Galeri 5" class="gallery-item rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105" onerror="this.onerror=null; this.src='6.jpg';">
+                    <img src="3.jpg" alt="Galeri 6" class="gallery-item rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105" onerror="this.onerror=null; this.src='3.jpg';">
+                    <img src="7.jpg" alt="Galeri 7" class="gallery-item rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105" onerror="this.onerror=null; this.src='7.jpg';">
+                    <img src="8.jpg" alt="Galeri 8" class="gallery-item rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105" onerror="this.onerror=null; this.src='8.jpg';">
                 </div>
             </section>
 
-            <!-- Slide 5: Kado Digital, Peta, dan Komen -->
             <section id="slide5" class="py-16 max-w-4xl mx-auto">
                 <h2 class="script-font text-3xl text-rose-gold text-center mb-10">Tanda Kasih & Doa Restu</h2>
 
                 <div class="grid md:grid-cols-2 gap-8 mb-16">
-                    <!-- Kado Digital (QRIS & Transfer) -->
                     <div class="p-6 bg-blush rounded-xl shadow-xl border border-rose-gold/50">
                         <h3 class="script-font text-2xl text-rose-gold text-center mb-4">Hadiah Tanda Kasih</h3>
                         <p class="text-sm text-center mb-6">Doa restu Anda merupakan hadiah yang tak ternilai harganya.</p>
-                        
-                        <!-- QRIS Section -->
+
                         <div class="bg-white p-4 rounded-lg shadow-inner mb-4 flex flex-col items-center">
-                            <!-- GANTI URL QRIS ANDA DI SINI -->
                             <img src="qris.jpg" alt="QRIS Code" class="w-36 h-36 border border-rose-gold/70 rounded-md mb-2" onerror="this.onerror=null; this.src='qris.jpg';">
                             <p class="text-xs text-dark-text/70">Scan QRIS ini dengan aplikasi E-Wallet/Mobile Banking apapun.</p>
                         </div>
-                        
-                        <!-- Bank Transfer Details -->
+
                         <div class="space-y-2 mt-6">
-                             <!-- EDIT DETAIL REKENING BANK DI SINI -->
-                            <p class="font-semibold text-rose-gold">Transfer Bank A/N Ririn</p>
+                             <p class="font-semibold text-rose-gold">Transfer Bank A/N Ririn</p>
                             <p>Bank: BRI</p>
                             <p>Nomor Rekening: <span class="font-mono bg-gray-100 p-1 rounded">**0896 0102 7999 532**</span></p>
                         </div>
                     </div>
 
-                    <!-- Lokasi Peta -->
                     <div class="p-6 bg-white rounded-xl shadow-xl border border-rose-gold/50">
                         <h3 class="script-font text-2xl text-rose-gold text-center mb-4">Lokasi Acara</h3>
                         <p class="text-center mb-4">Kami nantikan kehadiran Anda.</p>
-                        
-                        <!-- Placeholder Map -->
+
                         <div class="w-full h-64 bg-gray-200 rounded-lg overflow-hidden border border-rose-gold/70 flex justify-center items-center text-gray-500">
-                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d990.7352493505592!2d108.45037326945074!3d-6.654235667512791!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6ee1001ecbee99%3A0xe0a0cf85a5818e12!2sMie%20Ayam%20Raji&#39;i!5e0!3m2!1sid!2sid!4v1765040791363!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                            <span class="text-center">Area Google Maps (Embed)</span>
+                             <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15849.20815408665!2d108.4831206!3d-6.7262176!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6f1f4528173431%3A0x6a0c5c4a5f4d1a58!2sKec.%20Klangenan%2C%20Kabupaten%20Cirebon%2C%20Jawa%20Barat!5e0!3m2!1sid!2sid!4v1678886400000!5m2!1sid!2sid" 
+                                width="100%" 
+                                height="100%" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
                         </div>
-                        <!-- GANTI LINK GOOGLE MAPS UNTUK TOMBOL -->
-                        <a href="https://maps.app.goo.gl/VTc4FepzfXYLStpt5" target="_blank" class="block mt-4 text-center bg-rose-gold text-white py-2 rounded-full hover:bg-rose-gold/80 transition">Buka Google Maps</a>
+                        <a href="https://maps.app.goo.gl/YourActualMapLinkHere" target="_blank" class="block mt-4 text-center bg-rose-gold text-white py-2 rounded-full hover:bg-rose-gold/80 transition">Buka Google Maps</a>
                     </div>
                 </div>
 
-                <!-- Kolom Komen/Ucapan (Fungsional dengan Firestore) -->
-                <div class="p-8 bg-blush rounded-xl shadow-2xl border-t-4 border-rose-gold">
-                    <h3 class="script-font text-3xl text-rose-gold text-center mb-6">Ucapan & Doa Restu</h3>
-                    
-                    <form id="comment-form">
-                        <div class="mb-4">
-                            <label for="nama" class="block text-sm font-medium text-dark-text mb-1">Nama Anda</label>
-                            <input type="text" id="nama" required class="w-full p-2 border border-rose-gold/50 rounded-lg focus:ring-rose-gold focus:border-rose-gold">
-                        </div>
-                        <div class="mb-4">
-                            <label for="ucapan" class="block text-sm font-medium text-dark-text mb-1">Ucapan</label>
-                            <textarea id="ucapan" rows="4" required class="w-full p-2 border border-rose-gold/50 rounded-lg focus:ring-rose-gold focus:border-rose-gold"></textarea>
-                        </div>
-                        <button type="submit" id="submit-comment-btn" class="w-full bg-rose-gold text-white py-2 rounded-lg hover:bg-rose-gold/90 transition duration-300">Kirim Ucapan</button>
-                    </form>
+                <div class="p-8 bg-blush rounded-xl shadow-2xl border-t-4 border-rose-gold text-center">
+                    <h3 class="script-font text-3xl text-rose-gold mb-6">Kirim Ucapan & Doa Restu</h3>
+
+                    <p class="text-center mb-6 text-dark-text">
+                        Doa restu Anda dapat dikirimkan langsung melalui WhatsApp kepada kami.
+                    </p>
+
+                    <a id="wa-link" href="#" target="_blank" class="inline-flex items-center justify-center w-full md:w-auto bg-green-500 text-white px-8 py-3 rounded-lg hover:bg-green-600 transition duration-300 font-bold">
+                        <span class="material-icons align-middle mr-2">send</span> Kirim Ucapan via WhatsApp
+                    </a>
                     
                     <div class="mt-8">
                         <h4 class="font-bold text-lg mb-3 border-b border-rose-gold/30 pb-2">Daftar Ucapan Tamu</h4>
-                        <div id="comments-list" class="space-y-3">
-                            <!-- Komentar akan dimuat di sini secara real-time -->
-                            <p class="text-center text-gray-500" id="loading-comments">Memuat ucapan...</p>
-                        </div>
+                        <p class="text-center text-gray-500">
+                            (Fitur daftar ucapan dinonaktifkan karena tidak menggunakan database.)
+                        </p>
                     </div>
                 </div>
             </section>
 
-             <!-- Footer (Penutup) -->
-            <footer class="text-center py-10 border-t border-rose-gold/50 mt-10 max-w-4xl mx-auto">
+              <footer class="text-center py-10 border-t border-rose-gold/50 mt-10 max-w-4xl mx-auto">
                 <p class="script-font text-2xl text-rose-gold mb-3">Terima Kasih</p>
-                <!-- EDIT NAMA MEMPELAI PRIA DAN WANITA DI SINI -->
                 <p class="text-sm">© 2025 The Wedding of Tato Wijaya & Ririn</p>
             </footer>
 
         </div>
     </section>
 
-    <!-- Audio Element -->
     <audio id="background-music" loop>
-        <!-- EDIT LINK MUSIK DI SINI (Ganti dengan URL file mp3 Anda) -->
         <source src="ysabell.mp3" type="audio/mpeg">
     </audio>
+    
+    <button id="music-control-btn" class="bg-rose-gold text-white rounded-full shadow-2xl hidden" aria-label="Kontrol Musik">
+        <span class="material-icons text-3xl p-1" id="music-icon">volume_up</span>
+    </button>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, setLogLevel, addDoc, onSnapshot, collection, query } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-        // Global Variables from Canvas Environment
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : null;
-        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
-
-        let db, auth;
-        let userId = null;
-        let isAuthReady = false;
-
-        // --- FIREBASE INITIALIZATION & AUTHENTICATION ---
-        if (firebaseConfig) {
-            try {
-                const app = initializeApp(firebaseConfig);
-                db = getFirestore(app);
-                auth = getAuth(app);
-                setLogLevel('Debug'); // Untuk logging di console
-
-                async function authenticate() {
-                    try {
-                        if (initialAuthToken) {
-                            const userCredential = await signInWithCustomToken(auth, initialAuthToken);
-                            userId = userCredential.user.uid;
-                        } else {
-                            const userCredential = await signInAnonymously(auth);
-                            userId = userCredential.user.uid;
-                        }
-                        isAuthReady = true;
-                        console.log("Firebase Auth Sukses. User ID:", userId);
-                        // Mulai mendengarkan komentar setelah otentikasi siap
-                        listenForComments(); 
-                    } catch (error) {
-                        console.error("Firebase Auth Gagal:", error);
-                        // Fallback: Gunakan ID acak jika autentikasi gagal
-                        userId = crypto.randomUUID();
-                        isAuthReady = true;
-                        listenForComments(); 
-                    }
-                }
-                authenticate();
-            } catch (error) {
-                console.error("Firebase Initialization Gagal:", error);
-            }
-        } else {
-            console.error("Firebase Config tidak ditemukan.");
-            // Fallback jika tidak ada konfigurasi
-            userId = crypto.randomUUID();
-            isAuthReady = true;
-        }
-        
+    <script>
         // --- CONSTANTS & DOM ELEMENTS ---
-        // EDIT TANGGAL PERNIKAHAN UNTUK COUNTDOWN DI SINI (Format: Bulan Hari, Tahun Jam:Menit:Detik)
-        const targetDate = new Date("Dec 14, 2025 09:00:00").getTime(); 
+        // EDIT TANGGAL PERNIKAHAN UNTUK COUNTDOWN DI SINI 
+        const targetDate = new Date("Dec 14, 2025 09:00:00").getTime();
         const openBtn = document.getElementById('open-invitation-btn');
         const mainContent = document.getElementById('main-content');
         const slide1 = document.getElementById('slide1');
         const music = document.getElementById('background-music');
-        const commentForm = document.getElementById('comment-form');
-        const commentsList = document.getElementById('comments-list');
-        const loadingComments = document.getElementById('loading-comments');
-
-        // Path Collection untuk menyimpan ucapan (Public Data)
-        const COMMENTS_COLLECTION = `artifacts/${appId}/public/data/wedding_comments`;
+        const musicControlBtn = document.getElementById('music-control-btn');
+        const musicIcon = document.getElementById('music-icon');
 
         // --- 1. COUNTDOWN TIMER LOGIC ---
         function updateCountdown() {
@@ -474,7 +394,7 @@
         function setGuestName() {
             const urlParams = new URLSearchParams(window.location.search);
             // Parameter 'to' digunakan untuk nama tamu (contoh: ?to=Bapak%20Rahmat)
-            const guestName = urlParams.get('to'); 
+            const guestName = urlParams.get('to');
             const guestDisplay = document.getElementById('guest-name-display');
 
             if (guestName) {
@@ -486,131 +406,83 @@
             }
         }
 
-        // --- 3. OPEN INVITATION LOGIC ---
+        // --- 3. MUSIC CONTROL LOGIC ---
+        let isPlaying = false;
+
+        function toggleMusic() {
+            if (isPlaying) {
+                music.pause();
+                musicIcon.textContent = 'volume_off';
+                isPlaying = false;
+            } else {
+                music.play().catch(e => console.error("Gagal memutar musik:", e));
+                musicIcon.textContent = 'volume_up';
+                isPlaying = true;
+            }
+        }
+
+        musicControlBtn.addEventListener('click', toggleMusic);
+
+        // --- 4. OPEN INVITATION LOGIC ---
         openBtn.addEventListener('click', () => {
             // UI Transition
             openBtn.parentElement.classList.add('opacity-0', 'transition-opacity', 'duration-500');
-            
-            // Atur agar musik mulai diputar setelah interaksi pengguna
-            music.volume = 0.5; // Atur volume
-            music.play().catch(e => console.error("Gagal memutar musik: ", e));
 
+            // 1. Mulai Putar Musik
+            music.volume = 0.5; // Atur volume
+            music.play().then(() => {
+                isPlaying = true;
+                musicIcon.textContent = 'volume_up';
+            }).catch(e => console.warn("Musik gagal diputar otomatis (browser restriction): ", e));
+
+            // 2. Tampilkan tombol kontrol musik
+            musicControlBtn.classList.remove('hidden');
+
+            // 3. Transisi Konten
             setTimeout(() => {
                 openBtn.parentElement.classList.add('hidden'); // Sembunyikan elemen setelah transisi
                 slide1.style.minHeight = 'auto';
                 slide1.style.paddingTop = '10vh';
                 slide1.style.paddingBottom = '10vh';
-                
+
                 mainContent.classList.remove('hidden');
 
                 // Start Countdown
                 countdownInterval = setInterval(updateCountdown, 1000);
-                updateCountdown(); 
+                updateCountdown();
 
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }, 500); // Tunggu transisi selesai
         });
 
-        // --- 4. COMMENT (FIRESTORE) LOGIC ---
-        
-        // Render semua ucapan yang ada
-        function renderComments(comments) {
-            commentsList.innerHTML = '';
-            loadingComments.classList.add('hidden');
+        // --- 5. WHATSAPP LINK GENERATOR (NEW) ---
+        function setupWhatsAppLink() {
+            const groom = "Ato"; // Ganti dengan nama mempelai pria
+            const bride = "Ririn"; // Ganti dengan nama mempelai wanita
+            // GANTI NOMOR WHATSAPP ANDA DI SINI (diawali 62 tanpa +)
+            const waNumber = "628815612307"; 
 
-            if (comments.length === 0) {
-                commentsList.innerHTML = `<p class="text-center text-gray-500">Belum ada ucapan. Jadilah yang pertama!</p>`;
-                return;
-            }
-
-            // Urutkan berdasarkan waktu terbaru di atas (descending)
-            comments.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0)); 
-
-            comments.forEach(comment => {
-                // Jika timestamp tidak ada, gunakan waktu saat ini (fallback)
-                const date = comment.timestamp ? new Date(comment.timestamp) : new Date(); 
-                const formattedDate = date.toLocaleDateString('id-ID', {
-                    day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
-                });
-
-                const commentDiv = `
-                    <div class="p-3 bg-white rounded-lg shadow-sm border-l-4 border-rose-gold/70">
-                        <p class="font-semibold text-rose-gold">${comment.name}</p>
-                        <p class="text-xs text-gray-400 mb-1">${formattedDate}</p>
-                        <p class="text-sm whitespace-pre-wrap">${comment.comment}</p>
-                    </div>
-                `;
-                commentsList.innerHTML += commentDiv;
-            });
-        }
-        
-        // Mengirim data ke Firestore
-        commentForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            if (!isAuthReady) {
-                console.error("Autentikasi belum siap. Silakan coba lagi.");
-                return;
-            }
-
-            const nameInput = document.getElementById('nama');
-            const commentInput = document.getElementById('ucapan');
-            const submitBtn = document.getElementById('submit-comment-btn');
-
-            const name = nameInput.value.trim();
-            const commentText = commentInput.value.trim();
-
-            if (!name || !commentText) {
-                console.warn("Nama dan ucapan tidak boleh kosong.");
-                return;
-            }
+            // Dapatkan nama tamu dari URL
+            const urlParams = new URLSearchParams(window.location.search);
+            // Diterima dari '?to=Nama%20Tamu'
+            const guestName = urlParams.get('to') || "Tamu Undangan"; 
             
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Mengirim...';
-
-            try {
-                // Menambahkan dokumen baru ke koleksi ucapan publik
-                await addDoc(collection(db, COMMENTS_COLLECTION), {
-                    name: name,
-                    comment: commentText,
-                    timestamp: Date.now(), 
-                    userId: userId,
-                });
-
-                // Reset form setelah sukses
-                nameInput.value = '';
-                commentInput.value = '';
-
-            } catch (error) {
-                console.error("Gagal mengirim ucapan:", error);
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Kirim Ucapan';
-            }
-        });
-
-        // Mendengarkan perubahan data secara real-time dari Firestore
-        function listenForComments() {
-            if (!db) return; // Pastikan db sudah terinisialisasi
+            // Pesan default yang akan terisi di WhatsApp
+            const message = `Halo ${groom} & ${bride},\n\nSelamat atas pernikahan kalian! Kami dari ${decodeURIComponent(guestName)} mengucapkan doa terbaik. Semoga pernikahan ini penuh berkah, sakinah, mawaddah, warahmah, dan bahagia selalu hingga akhir hayat.\n\nAamiin ya Rabbal Alamin.`;
             
-            const q = query(collection(db, COMMENTS_COLLECTION));
+            // Encode pesan untuk URL
+            const waLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
             
-            onSnapshot(q, (snapshot) => {
-                const comments = [];
-                snapshot.forEach((doc) => {
-                    comments.push({ id: doc.id, ...doc.data() });
-                });
-                renderComments(comments);
-            }, (error) => {
-                console.error("Error mendengarkan komentar:", error);
-                commentsList.innerHTML = `<p class="text-center text-red-500">Gagal memuat ucapan: ${error.message}</p>`;
-            });
+            // Set link pada tombol
+            document.getElementById('wa-link').href = waLink;
         }
 
-        // Pastikan konten utama tersembunyi di awal dan personalisasi nama tamu dijalankan
+        // Panggil fungsi-fungsi inisialisasi saat dokumen dimuat
         document.addEventListener('DOMContentLoaded', () => {
-             setGuestName(); // Jalankan personalisasi nama tamu
+             setGuestName(); // Personalisasi nama tamu
+             setupWhatsAppLink(); // Siapkan link WhatsApp
              if (!openBtn.classList.contains('hidden')) {
-                mainContent.classList.add('hidden');
+                 mainContent.classList.add('hidden');
              }
         });
     </script>
