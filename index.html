@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <title>Undangan Digital - Cherry Blossom & Hanok</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -73,23 +73,32 @@
             0% { transform: translateY(-100%) translateX(0); opacity: 0.8; }
             100% { transform: translateY(100vh) translateX(50px); opacity: 0; }
         }
-        .petal-1 { top: 5%; left: 10%; animation-delay: 0s; font-size: 20px; opacity: 0.7;}
-        .petal-2 { top: 20%; right: 5%; animation-delay: 3s; font-size: 16px; opacity: 0.6;}
-        .petal-3 { top: 40%; left: 25%; animation-delay: 7s; font-size: 24px; opacity: 0.8;}
-        .petal-4 { top: 70%; right: 15%; animation-delay: 10s; font-size: 18px; opacity: 0.7;}
-        .petal-5 { top: 85%; left: 5%; animation-delay: 5s; font-size: 22px; opacity: 0.9;}
+        /* Penyesuaian ukuran kelopak agar tidak terlalu besar di HP */
+        .petal-1 { top: 5%; left: 10%; animation-delay: 0s; font-size: 16px; opacity: 0.7;}
+        .petal-2 { top: 20%; right: 5%; animation-delay: 3s; font-size: 12px; opacity: 0.6;}
+        .petal-3 { top: 40%; left: 25%; animation-delay: 7s; font-size: 20px; opacity: 0.8;}
+        .petal-4 { top: 70%; right: 15%; animation-delay: 10s; font-size: 14px; opacity: 0.7;}
+        .petal-5 { top: 85%; left: 5%; animation-delay: 5s; font-size: 18px; opacity: 0.9;}
 
         /* Gaya untuk bingkai foto bunga di Slide 1 */
         .floral-photo-frame {
             position: relative;
-            width: 220px;
-            height: 270px;
+            /* Ukuran default untuk HP */
+            width: 200px; 
+            height: 250px;
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
             background-color: white;
             z-index: 30;
             margin: 0 auto;
+        }
+        /* Ukuran disesuaikan untuk layar medium ke atas (Laptop/Tablet) */
+        @media (min-width: 768px) {
+            .floral-photo-frame {
+                width: 220px;
+                height: 270px;
+            }
         }
 
         .floral-photo-frame img {
@@ -103,7 +112,7 @@
         .floral-photo-frame::after {
             content: '🌸';
             position: absolute;
-            font-size: 60px;
+            font-size: 50px; /* Sedikit dikecilkan untuk HP */
             color: #FFD1DC;
             z-index: 35;
             opacity: 0.9;
@@ -111,7 +120,7 @@
         }
         .floral-photo-frame::before { top: -15px; left: -20px; transform: rotate(-20deg); }
         .floral-photo-frame::after { bottom: -15px; right: -20px; transform: rotate(160deg); }
-
+        
         /* Dekorasi Sudut Sakura untuk Cover */
         .corner-branch {
             position: absolute;
@@ -120,10 +129,20 @@
             user-select: none;
             pointer-events: none;
         }
+        /* Ukuran disesuaikan untuk HP agar tidak menutupi konten */
+        .corner-branch.top-left, .corner-branch.bottom-right {
+            width: 200px; 
+            height: 200px;
+        }
+        @media (min-width: 768px) {
+            .corner-branch.top-left, .corner-branch.bottom-right {
+                width: 250px;
+                height: 250px;
+            }
+        }
+
         .corner-branch.top-left {
             top: -50px; left: -50px;
-            width: 250px; height: 250px;
-            /* SVG Placeholder */
             background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23FFD1DC" d="M50 0 C75 0 100 25 100 50 C100 75 75 100 50 100 C25 100 0 75 0 50 C0 25 25 0 50 0 Z"/><text x="50" y="55" font-size="60" text-anchor="middle" fill="%23FF99AA">🌸</text></svg>');
             background-size: contain;
             background-repeat: no-repeat;
@@ -131,7 +150,6 @@
         }
         .corner-branch.bottom-right {
             bottom: -50px; right: -50px;
-            width: 250px; height: 250px;
             background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23FFD1DC" d="M50 0 C75 0 100 25 100 50 C100 75 75 100 50 100 C25 100 0 75 0 50 C0 25 25 0 50 0 Z"/><text x="50" y="55" font-size="60" text-anchor="middle" fill="%23FF99AA">🌸</text></svg>');
             background-size: contain;
             background-repeat: no-repeat;
@@ -177,11 +195,11 @@
                 <img src="Coverawal.jpg" alt="Foto Mempelai" onerror="this.onerror=null; this.src='Coverawal.jpg';">
             </div>
 
-            <p class="text-xl text-dark-text mb-1 tracking-widest font-script italic">Kami Menikah</p>
-            <h1 class="script-font text-5xl md:text-6xl text-rose-gold mb-2 leading-tight">
+            <p class="text-lg md:text-xl text-dark-text mb-1 tracking-widest font-script italic">Kami Menikah</p>
+            <h1 class="script-font text-4xl sm:text-5xl md:text-6xl text-rose-gold mb-2 leading-tight">
                 Ato & Ririn
             </h1>
-            <p id="date-display" class="text-dark-text text-lg mb-8">Minggu, 14 Desember 2025</p>
+            <p id="date-display" class="text-base md:text-lg text-dark-text mb-8">Minggu, 14 Desember 2025</p>
 
             <button id="open-invitation-btn" class="bg-rose-gold text-white px-8 py-3 rounded-full shadow-lg hover:bg-rose-gold/90 transition duration-300 transform hover:scale-105">
                 Buka Undangan
@@ -191,45 +209,45 @@
         <div id="main-content" class="hidden w-full px-4 md:px-8 pt-10 pb-20">
             <div class="text-center mb-12">
                 <h2 class="text-xl font-script text-rose-gold mb-4">Menghitung Hari Bahagia</h2>
-                <div id="countdown-timer" class="flex justify-center space-x-4">
-                    <div class="p-3 bg-blush text-rose-gold rounded-xl shadow-md min-w-[70px]">
-                        <span id="days" class="text-3xl block font-bold">00</span>
+                <div id="countdown-timer" class="flex justify-center space-x-2 sm:space-x-4">
+                    <div class="p-2 sm:p-3 bg-blush text-rose-gold rounded-lg sm:rounded-xl shadow-md min-w-[60px] sm:min-w-[70px]">
+                        <span id="days" class="text-2xl sm:text-3xl block font-bold">00</span>
                         <span class="text-xs uppercase">Hari</span>
                     </div>
-                    <div class="p-3 bg-blush text-rose-gold rounded-xl shadow-md min-w-[70px]">
-                        <span id="hours" class="text-3xl block font-bold">00</span>
+                    <div class="p-2 sm:p-3 bg-blush text-rose-gold rounded-lg sm:rounded-xl shadow-md min-w-[60px] sm:min-w-[70px]">
+                        <span id="hours" class="text-2xl sm:text-3xl block font-bold">00</span>
                         <span class="text-xs uppercase">Jam</span>
                     </div>
-                    <div class="p-3 bg-blush text-rose-gold rounded-xl shadow-md min-w-[70px]">
-                        <span id="minutes" class="text-3xl block font-bold">00</span>
+                    <div class="p-2 sm:p-3 bg-blush text-rose-gold rounded-lg sm:rounded-xl shadow-md min-w-[60px] sm:min-w-[70px]">
+                        <span id="minutes" class="text-2xl sm:text-3xl block font-bold">00</span>
                         <span class="text-xs uppercase">Menit</span>
                     </div>
-                    <div class="p-3 bg-blush text-rose-gold rounded-xl shadow-md min-w-[70px]">
-                        <span id="seconds" class="text-3xl block font-bold">00</span>
+                    <div class="p-2 sm:p-3 bg-blush text-rose-gold rounded-lg sm:rounded-xl shadow-md min-w-[60px] sm:min-w-[70px]">
+                        <span id="seconds" class="text-2xl sm:text-3xl block font-bold">00</span>
                         <span class="text-xs uppercase">Detik</span>
                     </div>
                 </div>
             </div>
 
-            <section id="slide2" class="py-16 text-center max-w-xl mx-auto">
-                <div class="border-t border-b border-rose-gold/50 py-10">
-                    <p class="text-dark-text text-lg italic mb-6">
+            <section id="slide2" class="py-12 md:py-16 text-center max-w-xl mx-auto">
+                <div class="border-t border-b border-rose-gold/50 py-8 md:py-10 px-2">
+                    <p class="text-base md:text-lg italic mb-6">
                         "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir."
                     </p>
-                    <p class="text-sm text-gray-500">- Q.S Ar-Rūm : 21 -</p>
+                    <p class="text-xs text-gray-500">- Q.S Ar-Rūm : 21 -</p>
                 </div>
             </section>
 
-            <section id="slide3" class="py-16 text-center max-w-4xl mx-auto">
+            <section id="slide3" class="py-12 md:py-16 text-center max-w-4xl mx-auto">
                 <h2 class="script-font text-3xl text-rose-gold mb-10">Kami yang Berbahagia</h2>
 
                 <div class="flex justify-center mb-10">
-                    <img src="3.jpg" alt="Foto Mempelai" class="rounded-xl shadow-lg w-48 h-64 gallery-item transition-all duration-500 hover:scale-105" onerror="this.onerror=null; this.src='3.jpg';">
+                    <img src="3.jpg" alt="Foto Mempelai" class="rounded-xl shadow-lg w-40 h-56 sm:w-48 sm:h-64 gallery-item transition-all duration-500 hover:scale-105" onerror="this.onerror=null; this.src='3.jpg';">
                 </div>
 
-                <div class="grid md:grid-cols-2 gap-8 text-dark-text mb-12">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 text-dark-text mb-12">
                     <div class="p-6 bg-blush rounded-xl shadow-md border-t-4 border-rose-gold">
-                        <h3 class="script-font text-3xl text-rose-gold mb-2">Tato Wijaya</h3>
+                        <h3 class="script-font text-2xl md:text-3xl text-rose-gold mb-2">Tato Wijaya</h3>
                         <p class="text-sm mb-4">Putra dari Bpk. Jaya & Ibu Eli</p>
                         <div class="border-t border-rose-gold/50 pt-4">
                             <p class="font-bold">Fb: @Alwijaya</p>
@@ -237,7 +255,7 @@
                     </div>
 
                     <div class="p-6 bg-blush rounded-xl shadow-md border-t-4 border-rose-gold">
-                           <h3 class="script-font text-3xl text-rose-gold mb-2">Ririn</h3>
+                           <h3 class="script-font text-2xl md:text-3xl text-rose-gold mb-2">Ririn</h3>
                         <p class="text-sm mb-4">Putri dari Bpk. Kadoni & Ibu Juneri</p>
                         <div class="border-t border-rose-gold/50 pt-4">
                             <p class="font-bold">Fb: @Riryn kim</p>
@@ -245,10 +263,10 @@
                     </div>
                 </div>
 
-                <div class="grid md:grid-cols-2 gap-6 mt-12">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
                     <div class="p-6 bg-white border border-rose-gold/50 rounded-xl shadow-lg">
-                        <h3 class="script-font text-2xl text-rose-gold mb-3">Akad Nikah</h3>
-                        <p class="text-lg font-bold">Minggu, 14 Desember 2025</p>
+                        <h3 class="script-font text-xl md:text-2xl text-rose-gold mb-3">Akad Nikah</h3>
+                        <p class="text-base md:text-lg font-bold">Minggu, 14 Desember 2025</p>
                         <p class="mb-3">Pukul: 09:00 WIB s/d Selesai </p>
                         <p class="mt-4">Bertempat di:</p>
                         <p class="font-semibold">Kediaman dari pihak mempelai wanita</p>
@@ -256,8 +274,8 @@
                     </div>
 
                     <div class="p-6 bg-white border border-rose-gold/50 rounded-xl shadow-lg">
-                        <h3 class="script-font text-2xl text-rose-gold mb-3">Resepsi</h3>
-                        <p class="text-lg font-bold">Minggu, 14 Desember 2025</p>
+                        <h3 class="script-font text-xl md:text-2xl text-rose-gold mb-3">Resepsi</h3>
+                        <p class="text-base md:text-lg font-bold">Minggu, 14 Desember 2025</p>
                         <p class="mb-3">Pukul: 10:00 WIB s/d Selesai</p>
                         <p class="mt-4">Bertempat di:</p>
                         <p class="font-semibold">Kediaman dari pihak mempelai wanita</p>
@@ -266,35 +284,35 @@
                 </div>
             </section>
 
-            <section id="slide4" class="py-16 max-w-4xl mx-auto">
-                <h2 class="script-font text-3xl text-rose-gold text-center mb-10">Galeri Kenangan Kami</h2>
+            <section id="slide4" class="py-12 md:py-16 max-w-4xl mx-auto">
+                <h2 class="script-font text-3xl text-rose-gold text-center mb-8">Galeri Kenangan Kami</h2>
 
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 p-4 bg-blush rounded-xl shadow-xl">
-                    <img src="1.jpg" alt="Galeri 1" class="gallery-item rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105" onerror="this.onerror=null; this.src='1.jpg';">
-                    <img src="2.jpg" alt="Galeri 2" class="gallery-item rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105" onerror="this.onerror=null; this.src='2.jpg';">
-                    <img src="4.jpg" alt="Galeri 3" class="gallery-item rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105" onerror="this.onerror=null; this.src='4.jpg';">
-                    <img src="5.jpg" alt="Galeri 4" class="gallery-item rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105" onerror="this.onerror=null; this.src='5.jpg';">
-                    <img src="6.jpg" alt="Galeri 5" class="gallery-item rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105" onerror="this.onerror=null; this.src='6.jpg';">
-                    <img src="3.jpg" alt="Galeri 6" class="gallery-item rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105" onerror="this.onerror=null; this.src='3.jpg';">
-                    <img src="7.jpg" alt="Galeri 7" class="gallery-item rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105" onerror="this.onerror=null; this.src='7.jpg';">
-                    <img src="8.jpg" alt="Galeri 8" class="gallery-item rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105" onerror="this.onerror=null; this.src='8.jpg';">
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-4 p-4 bg-blush rounded-xl shadow-xl">
+                    <img src="1.jpg" alt="Galeri 1" class="gallery-item rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105 aspect-[3/4] object-cover" onerror="this.onerror=null; this.src='1.jpg';">
+                    <img src="2.jpg" alt="Galeri 2" class="gallery-item rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105 aspect-[3/4] object-cover" onerror="this.onerror=null; this.src='2.jpg';">
+                    <img src="4.jpg" alt="Galeri 3" class="gallery-item rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105 aspect-[3/4] object-cover" onerror="this.onerror=null; this.src='4.jpg';">
+                    <img src="5.jpg" alt="Galeri 4" class="gallery-item rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105 aspect-[3/4] object-cover" onerror="this.onerror=null; this.src='5.jpg';">
+                    <img src="6.jpg" alt="Galeri 5" class="gallery-item rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105 aspect-[3/4] object-cover" onerror="this.onerror=null; this.src='6.jpg';">
+                    <img src="3.jpg" alt="Galeri 6" class="gallery-item rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105 aspect-[3/4] object-cover" onerror="this.onerror=null; this.src='3.jpg';">
+                    <img src="7.jpg" alt="Galeri 7" class="gallery-item rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105 aspect-[3/4] object-cover" onerror="this.onerror=null; this.src='7.jpg';">
+                    <img src="8.jpg" alt="Galeri 8" class="gallery-item rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105 aspect-[3/4] object-cover" onerror="this.onerror=null; this.src='8.jpg';">
                 </div>
             </section>
 
-            <section id="slide5" class="py-16 max-w-4xl mx-auto">
-                <h2 class="script-font text-3xl text-rose-gold text-center mb-10">Tanda Kasih & Doa Restu</h2>
+            <section id="slide5" class="py-12 md:py-16 max-w-4xl mx-auto">
+                <h2 class="script-font text-3xl text-rose-gold text-center mb-8">Tanda Kasih & Doa Restu</h2>
 
-                <div class="grid md:grid-cols-2 gap-8 mb-16">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-12 md:mb-16">
                     <div class="p-6 bg-blush rounded-xl shadow-xl border border-rose-gold/50">
                         <h3 class="script-font text-2xl text-rose-gold text-center mb-4">Hadiah Tanda Kasih</h3>
                         <p class="text-sm text-center mb-6">Doa restu Anda merupakan hadiah yang tak ternilai harganya.</p>
 
                         <div class="bg-white p-4 rounded-lg shadow-inner mb-4 flex flex-col items-center">
-                            <img src="qris.jpg" alt="QRIS Code" class="w-36 h-36 border border-rose-gold/70 rounded-md mb-2" onerror="this.onerror=null; this.src='qris.jpg';">
+                            <img src="qris.jpg" alt="QRIS Code" class="w-28 h-28 sm:w-36 sm:h-36 border border-rose-gold/70 rounded-md mb-2" onerror="this.onerror=null; this.src='qris.jpg';">
                             <p class="text-xs text-dark-text/70">Scan QRIS ini dengan aplikasi E-Wallet/Mobile Banking apapun.</p>
                         </div>
 
-                        <div class="space-y-2 mt-6">
+                        <div class="space-y-2 mt-6 text-sm">
                              <p class="font-semibold text-rose-gold">Transfer Bank A/N Ririn</p>
                             <p>Bank: BRI</p>
                             <p>Nomor Rekening: <span class="font-mono bg-gray-100 p-1 rounded">**0896 0102 7999 532**</span></p>
@@ -303,11 +321,11 @@
 
                     <div class="p-6 bg-white rounded-xl shadow-xl border border-rose-gold/50">
                         <h3 class="script-font text-2xl text-rose-gold text-center mb-4">Lokasi Acara</h3>
-                        <p class="text-center mb-4">Kami nantikan kehadiran Anda.</p>
+                        <p class="text-center mb-4 text-sm">Kami nantikan kehadiran Anda.</p>
 
-                        <div class="w-full h-64 bg-gray-200 rounded-lg overflow-hidden border border-rose-gold/70 flex justify-center items-center text-gray-500">
+                        <div class="w-full h-56 md:h-64 bg-gray-200 rounded-lg overflow-hidden border border-rose-gold/70 flex justify-center items-center text-gray-500">
                              <iframe 
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.941029698836!2d108.44844207317436!3d-6.654231665046955!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6ee1001ecbee99%3A0xe0a0cf85a5818e12!2sMie%20Ayam%20Raji&#39;i!5e0!3m2!1sid!2sid!4v1765050630927!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>" 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.941029698836!2d108.44844207317436!3d-6.654231665046955!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6ee1001ecbee99%3A0xe0a0cf85a5818e12!2sMie%20Ayam%20Raji&#39;i!5e0!3m2!1sid!2sid!4v1765051414312!5m2!1sid!2sid"
                                 width="100%" 
                                 height="100%" 
                                 style="border:0;" 
@@ -316,24 +334,24 @@
                                 referrerpolicy="no-referrer-when-downgrade">
                             </iframe>
                         </div>
-                        <a href="https://maps.app.goo.gl/TUkwd5FLEYno5xbSA" target="_blank" class="block mt-4 text-center bg-rose-gold text-white py-2 rounded-full hover:bg-rose-gold/80 transition">Buka Google Maps</a>
+                        <a href="https://maps.app.goo.gl/p2Bnt348raGUvvJG9" target="_blank" class="block mt-4 text-center bg-rose-gold text-white py-2 rounded-full hover:bg-rose-gold/80 transition text-sm">Buka Google Maps</a>
                     </div>
                 </div>
 
                 <div class="p-8 bg-blush rounded-xl shadow-2xl border-t-4 border-rose-gold text-center">
                     <h3 class="script-font text-3xl text-rose-gold mb-6">Kirim Ucapan & Doa Restu</h3>
 
-                    <p class="text-center mb-6 text-dark-text">
+                    <p class="text-center mb-6 text-dark-text text-sm">
                         Doa restu Anda dapat dikirimkan langsung melalui WhatsApp kepada kami.
                     </p>
 
-                    <a id="wa-link" href="#" target="_blank" class="inline-flex items-center justify-center w-full md:w-auto bg-green-500 text-white px-8 py-3 rounded-lg hover:bg-green-600 transition duration-300 font-bold">
+                    <a id="wa-link" href="#" target="_blank" class="inline-flex items-center justify-center w-full md:w-auto bg-green-500 text-white px-6 py-2 md:px-8 md:py-3 rounded-lg hover:bg-green-600 transition duration-300 font-bold text-base">
                         <span class="material-icons align-middle mr-2">send</span> Kirim Ucapan via WhatsApp
                     </a>
                     
                     <div class="mt-8">
                         <h4 class="font-bold text-lg mb-3 border-b border-rose-gold/30 pb-2">Daftar Ucapan Tamu</h4>
-                        <p class="text-center text-gray-500">
+                        <p class="text-center text-gray-500 text-sm">
                             (Fitur daftar ucapan dinonaktifkan karena tidak menggunakan database.)
                         </p>
                     </div>
@@ -358,7 +376,6 @@
 
     <script>
         // --- CONSTANTS & DOM ELEMENTS ---
-        // EDIT TANGGAL PERNIKAHAN UNTUK COUNTDOWN DI SINI 
         const targetDate = new Date("Dec 14, 2025 09:00:00").getTime();
         const openBtn = document.getElementById('open-invitation-btn');
         const mainContent = document.getElementById('main-content');
@@ -393,16 +410,13 @@
         // --- 2. GUEST NAME PERSONALIZATION LOGIC ---
         function setGuestName() {
             const urlParams = new URLSearchParams(window.location.search);
-            // Parameter 'to' digunakan untuk nama tamu (contoh: ?to=Bapak%20Rahmat)
             const guestName = urlParams.get('to');
             const guestDisplay = document.getElementById('guest-name-display');
 
             if (guestName) {
-                // Decode untuk menangani spasi atau karakter khusus
-                guestDisplay.innerHTML = `Kepada Yth.<br/>Bapak/Ibu/Saudara/i <span class="font-bold text-rose-gold text-xl block mt-1">${decodeURIComponent(guestName)}</span>`;
+                guestDisplay.innerHTML = `Kepada Yth.<br/>Bapak/Ibu/Saudara/i <span class="font-bold text-rose-gold text-lg sm:text-xl block mt-1">${decodeURIComponent(guestName)}</span>`;
             } else {
-                // Default jika tidak ada parameter 'to' di URL
-                guestDisplay.innerHTML = `Kepada Yth.<br/>Bapak/Ibu/Saudara/i <span class="font-bold text-rose-gold text-xl block mt-1">Tamu Undangan</span>`;
+                guestDisplay.innerHTML = `Kepada Yth.<br/>Bapak/Ibu/Saudara/i <span class="font-bold text-rose-gold text-lg sm:text-xl block mt-1">Tamu Undangan</span>`;
             }
         }
 
@@ -455,16 +469,15 @@
             }, 500); // Tunggu transisi selesai
         });
 
-        // --- 5. WHATSAPP LINK GENERATOR (NEW) ---
+        // --- 5. WHATSAPP LINK GENERATOR ---
         function setupWhatsAppLink() {
-            const groom = "Ato"; // Ganti dengan nama mempelai pria
-            const bride = "Ririn"; // Ganti dengan nama mempelai wanita
+            const groom = "Ato"; 
+            const bride = "Ririn"; 
             // GANTI NOMOR WHATSAPP ANDA DI SINI (diawali 62 tanpa +)
-            const waNumber = "628815612307"; 
+            const waNumber = "6281234567890"; 
 
             // Dapatkan nama tamu dari URL
             const urlParams = new URLSearchParams(window.location.search);
-            // Diterima dari '?to=Nama%20Tamu'
             const guestName = urlParams.get('to') || "Tamu Undangan"; 
             
             // Pesan default yang akan terisi di WhatsApp
@@ -479,8 +492,8 @@
 
         // Panggil fungsi-fungsi inisialisasi saat dokumen dimuat
         document.addEventListener('DOMContentLoaded', () => {
-             setGuestName(); // Personalisasi nama tamu
-             setupWhatsAppLink(); // Siapkan link WhatsApp
+             setGuestName(); 
+             setupWhatsAppLink(); 
              if (!openBtn.classList.contains('hidden')) {
                  mainContent.classList.add('hidden');
              }
